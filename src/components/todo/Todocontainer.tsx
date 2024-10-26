@@ -5,10 +5,10 @@ import { TodoCard } from "./TodoCard";
 
 const Todocontainer = () => {
     const toDos = useAppSelector(state => state.todos.todos)
-    console.log(toDos);
+    // console.log(toDos);
 
     return (
-        <div className="border border-black w-full rounded-xl my-6 px-6 py-8 bg-standerd space-y-2 ">
+        <div className="border border-black w-full h-full min-h-96 max-h-svh rounded-xl my-6 px-6 py-8 bg-standerd space-y-2">
             <div className="mb-4 flex justify-between items-center ">
                 <div className="w-full flex justify-start items-center gap-4">
                     <h1 className="text-xl font-semibold text-white">Aug 10th, 2024 | Sunday</h1>
@@ -20,14 +20,17 @@ const Todocontainer = () => {
                 </div>
                 <AddToDo></AddToDo>
             </div>
-            <div className="grid grid-cols-3  justify-between gap-4">
-                {
-                    toDos ? 
-                        toDos.map((toDo) => <TodoCard key={toDo.id}/>)
-                    : <></>
-                }
-            </div>
-            
+            {
+                toDos.length != 0 ?
+                    <div className="grid grid-cols-3 justify-between gap-4 ">
+                        { 
+                            toDos.map((toDo) => <TodoCard key={toDo.id} tittle={toDo.tittle}  description={toDo.description}/>)
+                        } 
+                    </div>: 
+                    <div className="w-full py-24 text-center ">
+                        <h1 className="text-white">NO TASK AVAILABLE!</h1>
+                    </div>
+            }
         </div>
     );
 };

@@ -8,24 +8,19 @@ import { addTodo } from "../../redux/features/todoSlice"
 
 export const AddToDo = () => {
     const [ tittle, setTittle ] = useState('');
-    const [ descreption, setDescreption] = useState('');
+    const [ description, setDescription] = useState('');
     const dispatch = useAppDispatch();
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
 
-        const uniqueNumber = Math.random().toString()
         const taskDetails = {
-            id: uniqueNumber,
             tittle: tittle,
-            descreption: descreption,
+            description: description,
         }
-        console.log(taskDetails);
-        
+        // console.log(taskDetails);
 
         dispatch(addTodo(taskDetails));
-
-
     }
 
     return (
@@ -51,7 +46,7 @@ export const AddToDo = () => {
                         <div className="grid gap-3">
                             <Label htmlFor="descreption" className="font-semibold">Descreption</Label>
                             {/* <Input id="descreption" defaultValue="" className="" /> */}
-                            <textarea name="" id="descreption" className="border rounded-md h-24 p-2 bg-base" onBlur={(e) => {setDescreption(e.target.value)}} ></textarea>
+                            <textarea name="" id="descreption" className="border rounded-md h-24 p-2 bg-base" onBlur={(e) => {setDescription(e.target.value)}} ></textarea>
                         </div>
                     </div>
                     <div  className="mx-auto mt-2">

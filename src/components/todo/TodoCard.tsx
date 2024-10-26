@@ -1,6 +1,16 @@
 import { Button } from "../ui/button"
 
-export const TodoCard = () => {
+type TTodoObject = {
+    // id: string;
+    tittle: string;
+    description:string;
+}
+
+export const TodoCard = ({tittle, description}: TTodoObject) => {
+    // console.log(todoObject);
+
+    console.log(tittle, description);
+    
     return (
         <div className="w-full rounded-lg bg-sole text-white">
             <div className="p-2 rounded-t-lg flex justify-between items-center gap-2 bg-base">
@@ -21,9 +31,9 @@ export const TodoCard = () => {
                 
             </div>
             <div className="w-full min-h-40 p-2 ">
-                <h1 className="text-lg font-medium">Tittle</h1>
+                <h1 className="text-lg font-medium">{tittle}</h1>
                 <h3 className="text-sm opacity-70">Time: {}</h3>
-                <p className="my-1">descreption</p>
+                <p className="my-1">{description}</p>
             </div>
             <div className="flex justify-center">
                 <Button className="my-2 bg-standerd">Details</Button>

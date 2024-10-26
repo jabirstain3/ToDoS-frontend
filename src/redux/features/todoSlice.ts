@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type TTodos = {
-    id: string;
+    id?: string;
     tittle: string;
-    descreption:string;
+    description:string;
     isCompleted?: boolean;
 }
 interface IState {
@@ -19,7 +19,8 @@ const todoSlice = createSlice({
     initialState,
     reducers: {
         addTodo: (state, action: PayloadAction<TTodos>) => {
-            state.todos.push({...action.payload, isCompleted: false});
+            const randomString = Math.random().toString(36).substring(2,7)
+            state.todos.push({...action.payload, id: randomString,  isCompleted: false});
         }
     }
 })
