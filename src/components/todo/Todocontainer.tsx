@@ -24,7 +24,7 @@ const Todocontainer = () => {
                 toDos.length != 0 ?
                     <div className="grid grid-cols-3 justify-between gap-4 ">
                         { 
-                            toDos.map((toDo) => <TodoCard key={toDo.id} tittle={toDo.tittle}  description={toDo.description}/>)
+                            toDos.map((toDo) => <TodoCard {...toDo}/>)
                         } 
                     </div>: 
                     <div className="w-full py-24 text-center ">

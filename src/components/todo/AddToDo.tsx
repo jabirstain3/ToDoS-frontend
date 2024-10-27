@@ -14,7 +14,10 @@ export const AddToDo = () => {
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
 
+        const randomString = Math.random().toString(36).substring(2,7);
+
         const taskDetails = {
+            id: randomString,
             tittle: tittle,
             description: description,
         }
@@ -51,7 +54,7 @@ export const AddToDo = () => {
                     </div>
                     <div  className="mx-auto mt-2">
                         <DialogClose asChild>
-                            <Button type="submit" className="" >Add</Button>
+                            <Button type="submit" className="">Add</Button>
                         </DialogClose>
                     </div>
                 </form>
