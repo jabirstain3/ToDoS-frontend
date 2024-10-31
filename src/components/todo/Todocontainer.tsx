@@ -1,11 +1,17 @@
-import { useAppSelector } from "../../redux/hook";
+import { JSX } from "react/jsx-runtime";
+import { useGetTodosQuery } from "../../redux/api/Api";
+// import { useAppSelector } from "../../redux/hook";
 import { Button } from "../ui/button";
 import { AddToDo } from "./AddToDo";
 import { TodoCard } from "./TodoCard";
 
 const Todocontainer = () => {
-    const toDos = useAppSelector(state => state.todos.todos)
+    // local storage
+    // const toDos = useAppSelector(state => state.todos.todos)
     // console.log(toDos);
+
+    //from Server
+    const {data:toDos} = useGetTodosQuery(undefined);
 
     return (
         <div className="border border-black w-full h-full min-h-96 max-h-svh rounded-xl my-6 px-6 py-8 bg-standerd space-y-2">
@@ -24,7 +30,7 @@ const Todocontainer = () => {
                 toDos.length != 0 ?
                     <div className="grid grid-cols-3 justify-between gap-4 ">
                         { 
-                            toDos.map((toDo) => <TodoCard {...toDo}/>)
+                            toDos?.data?.map((toDo: JSX.IntrinsicAttributes & { id: string; tittle: string; description: string; isComplite?: boolean; }) => <TodoCard {...toDo}/>)
                         } 
                     </div>: 
                     <div className="w-full py-24 text-center ">
