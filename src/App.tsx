@@ -2,8 +2,8 @@ import Todo from './pages/Todo'
 
 function App() {
   return (
-      <div className='w-full mx-auto p-2'>
-        <div className="-screen">
+      <div className='w-full h-screen mx-auto'>
+        <div className="h-screen">
           <Todo/>
         </div>
         
