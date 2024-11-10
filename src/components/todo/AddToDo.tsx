@@ -1,6 +1,7 @@
 import { Label } from "@radix-ui/react-label"
 import { Button } from "../ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "../ui/dialog"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
 import { Input } from "../ui/input"
 import { FormEvent, useState } from "react"
 import { useAppDispatch } from "../../redux/hook"
@@ -9,6 +10,7 @@ import { addTodo } from "../../redux/features/todoSlice"
 export const AddToDo = () => {
     const [ tittle, setTittle ] = useState('');
     const [ description, setDescription] = useState('');
+    const [ priority, setPriority] = useState('Normal');
     const dispatch = useAppDispatch();
 
     const handleSubmit = (e: FormEvent) => {
@@ -20,6 +22,7 @@ export const AddToDo = () => {
             id: randomString,
             tittle: tittle,
             description: description,
+            priority: priority,
         }
         // console.log(taskDetails);
 
@@ -51,9 +54,27 @@ export const AddToDo = () => {
                             {/* <Input id="descreption" defaultValue="" className="" /> */}
                             <textarea name="" id="descreption" className="border rounded-md h-24 p-2 bg-base" onBlur={(e) => {setDescription(e.target.value)}} ></textarea>
                         </div>
+                        <div className="">
+                            <Label htmlFor="priority" className="font-semibold">Priority</Label>
+                            <Select name="priority" onValueChange={(value) => {
+                                setPriority(value)
+                                console.log(value);
+                            }}>
+                                <SelectTrigger className="w-48 bg-base items-end">
+                                    <SelectValue placeholder="Normal" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="Urgent">Urgent</SelectItem>
+                                    <SelectItem value="Mandatory">Mandatory</SelectItem>
+                                    <SelectItem value="Normal">Normal</SelectItem>
+                                    <SelectItem value="Optional">Optional</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
                     </div>
-                    <div  className="mx-auto mt-2">
-                        <DialogClose asChild>
+                    
+                    <div  className="w-fit border mx-auto mt-8">
+                        <DialogClose className="" asChild>
                             <Button type="submit" className="">Add</Button>
                         </DialogClose>
                     </div>

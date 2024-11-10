@@ -6,11 +6,12 @@ type TTodoObject = {
     id: string;
     tittle: string;
     description:string;
+    priority: string;
     isComplited?: boolean;
 }
 
-export const TodoCard = ({id, tittle, description, isComplited}: TTodoObject) => {
-    console.log(id, tittle, description, isComplited);
+export const TodoCard = ({id, tittle, description, priority, isComplited}: TTodoObject) => {
+    // console.log(id, tittle, description, isComplited);
 
     const dispatch = useAppDispatch();
 
@@ -20,7 +21,7 @@ export const TodoCard = ({id, tittle, description, isComplited}: TTodoObject) =>
             <div className="p-2 rounded-t-lg flex justify-between items-center gap-2 bg-base">
                 <input type="checkbox" name="complet" id="" className="size-5" onChange={() => dispatch(togoleComplit(id))} checked={isComplited}/>
                 
-                <Button className="">Priority</Button>
+                <Button className="">{priority}</Button>
                 <div className="flex gap-2">
                     <Button className="">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-6">

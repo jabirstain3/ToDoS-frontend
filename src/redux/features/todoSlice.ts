@@ -4,6 +4,7 @@ type TTodos = {
     id: string;
     tittle: string;
     description:string;
+    priority: string;
     isComplited?: boolean;
 }
 interface IState {
@@ -13,6 +14,23 @@ interface IState {
 const initialState: IState = {
     todos: [],
 };
+const sortTodos = (todos: TTodos[]) => {
+    const priorityOrder: { [key in TTodos['priority']]: number } = {
+        Urgent: 1,
+        Mandatory: 2,
+        Normal: 3,
+        Optional: 4
+    };
+
+    return todos
+        .slice()
+        .sort((a, b) => {
+            if (a.isComplited !== b.isComplited) {
+                return a.isComplited ? 1 : -1;
+            }
+            return priorityOrder[a.priority] - priorityOrder[b.priority];
+        });
+};
 
 const todoSlice = createSlice({
     name: "todo",
@@ -20,6 +38,7 @@ const todoSlice = createSlice({
     reducers: {
         addTodo: (state, action: PayloadAction<TTodos>) => {
             state.todos.push({...action.payload,  isComplited: false});
+            state.todos = sortTodos(state.todos);
         },
         
         removeTodo: (state, action: PayloadAction<string>) => {
@@ -28,9 +47,12 @@ const todoSlice = createSlice({
 
         togoleComplit: (state, action: PayloadAction<string>) => {
             const task = state.todos.find(todo => todo.id == action.payload);
-            task!.isComplited = !task?.isComplited;
+            if (task) {
+                task.isComplited = !task.isComplited;
+                state.todos = sortTodos(state.todos);
+            }
         }
-    }
+    }    
 })
 
 export const { addTodo, removeTodo, togoleComplit } = todoSlice.actions;

@@ -4,11 +4,10 @@ import { useAppSelector } from "../../redux/hook";
 import { Button } from "../ui/button";
 import { AddToDo } from "./AddToDo";
 import { TodoCard } from "./TodoCard";
-import { selectSortedTodos } from "../../memo/memoized";
 
 const Todocontainer = () => {
     // local storage
-    const toDos = useAppSelector(selectSortedTodos)
+    const toDos = useAppSelector((state) => state.todos.todos)
     console.log(toDos);
 
     // //from Server
@@ -34,7 +33,8 @@ const Todocontainer = () => {
                     <div className="w-full h-full max-h-[720px] overflow-y-auto pr-1">
                         <div className="grid grid-cols-3 justify-between gap-4">
                             { 
-                                toDos?.map((toDo: JSX.IntrinsicAttributes & { id: string; tittle: string; description: string; isComplite?: boolean; }) => <TodoCard {...toDo}/>)
+                                toDos?.map((toDo: JSX.IntrinsicAttributes & { id: string; tittle: string; description: string; isComplite?: boolean; priority: string;
+                                }) => <TodoCard {...toDo} key={toDo.id}/>)
                             }
                         </div>
                     </div>: 
