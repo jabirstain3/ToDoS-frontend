@@ -6,11 +6,11 @@ type TTodoObject = {
     id: string;
     tittle: string;
     description:string;
-    isComplite?: boolean;
+    isComplited?: boolean;
 }
 
-export const TodoCard = ({id, tittle, description, isComplite}: TTodoObject) => {
-    console.log(id, tittle, description, isComplite);
+export const TodoCard = ({id, tittle, description, isComplited}: TTodoObject) => {
+    console.log(id, tittle, description, isComplited);
 
     const dispatch = useAppDispatch();
 
@@ -18,11 +18,7 @@ export const TodoCard = ({id, tittle, description, isComplite}: TTodoObject) => 
     return (
         <div className="w-full rounded-lg bg-sole text-white">
             <div className="p-2 rounded-t-lg flex justify-between items-center gap-2 bg-base">
-                {
-                    isComplite == true ? 
-                    <input type="checkbox" name="complet" id="" className="size-5" onChange={() => dispatch(togoleComplit(id))} checked/> : 
-                    <input type="checkbox" name="complet" id="" className="size-5"  onChange={() => dispatch(togoleComplit(id))}/>
-                }
+                <input type="checkbox" name="complet" id="" className="size-5" onChange={() => dispatch(togoleComplit(id))} checked={isComplited}/>
                 
                 <Button className="">Priority</Button>
                 <div className="flex gap-2">

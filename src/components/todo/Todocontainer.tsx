@@ -4,14 +4,17 @@ import { useAppSelector } from "../../redux/hook";
 import { Button } from "../ui/button";
 import { AddToDo } from "./AddToDo";
 import { TodoCard } from "./TodoCard";
+import { selectSortedTodos } from "../../memo/memoized";
 
 const Todocontainer = () => {
     // local storage
-    const toDos = useAppSelector(state => state.todos.todos)
+    const toDos = useAppSelector(selectSortedTodos)
     console.log(toDos);
 
     // //from Server
     // const {data:toDos} = useGetTodosQuery(undefined);
+
+
 
     return (
         <div className="border border-black w-full flex-1 rounded-xl my-6 px-6 py-8 bg-standerd space-y-2">
