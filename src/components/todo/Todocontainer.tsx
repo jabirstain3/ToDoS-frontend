@@ -8,7 +8,7 @@ import { TodoCard } from "./TodoCard";
 const Todocontainer = () => {
     // local storage
     const toDos = useAppSelector((state) => state.todos.todos)
-    console.log(toDos);
+    // console.log(toDos);
 
     // //from Server
     // const {data:toDos} = useGetTodosQuery(undefined);
